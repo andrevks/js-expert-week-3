@@ -37,9 +37,19 @@ export default class FluentSQLBuilder {
     return this
   }
 
+  #performLimit(results){
+    return this.#limit && results.length === this.#limit
+  }
+
   build(){
     const results = []
+    for(const item of this.#database){
+      results.push(item)
 
+      if(this.#performLimit(results)) break;
+
+    }
+    console.log({results})
     return results
   }
 

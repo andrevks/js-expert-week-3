@@ -15,7 +15,7 @@ const data = [
   {
     id:2,
     name:'Jao',
-    category:'network administrator'
+    category:'networkAdministrator'
   },
 ]
 
@@ -27,11 +27,16 @@ describe("Test Suit for FluentSQL Builder", () =>{
   })
   test('#build should return the empty object instance', () =>{
     const result = FluentSQLBuilder.for(data).build()
-    const expected = []
+    const expected = data 
     expect(result).toStrictEqual(expected)
   })
   
-  test.todo('#limit given a colletion limit results')
+  test.only('#limit given a colletion limit results', () =>{
+    const result = FluentSQLBuilder.for(data).limit(1).build()
+    const expected = [data[0]]
+    expect(result).toStrictEqual(expected)
+   
+  })
   test.todo('#where given a colletion it should filter data')
   test.todo('#select given a colletion it should return only specific fields')
   test.todo('#orderBy given a colletion it should order results by field')
